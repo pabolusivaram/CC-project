@@ -1,0 +1,125 @@
+<div class="bg p-3">
+  <h2><a class="text-white" href="/home">Natural Disaster Data Analysis</a></h2>
+</div>
+<div class="row">
+  <div class="col-3 boxshadow1">
+    <div class="row p-3">
+      <b><u>Period:</u></b>
+    </div>
+    <div class="row ml-0">
+      <div class="col-2">
+        <label>From </label>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control input-group-sm" list="dynmicFrom" [(ngModel)]="fromValue" (change)="onFromYearChange(fromValue)">
+        <datalist id="dynmicFrom">
+          <option *ngFor="let yearValues of yearData" [value]="yearValues[0]"></option>
+        </datalist>
+      </div>
+      <div class="col-2">
+        <label> To </label>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control input-group-sm" list="dynmicTo" [(ngModel)]="toValue" (change)="onToYearChange(toValue)">
+        <datalist id="dynmicTo">
+          <option *ngFor="let yearValues of yearData" [value]="yearValues[0]"></option>
+        </datalist>
+      </div>
+    </div>
+    <div class="row p-3 mt-4">
+      <b><u>Filter By Country:</u></b>
+    </div>
+    <div class="row ml-0">
+      <div class="col-4">
+        <select style="width:250px !important;" [(ngModel)]="countryDropDownValue" (change)="countryDropdownChange($event.target.value)">
+          <option *ngFor="let country of countries" value="{{country[0]}}">{{country[0]}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row p-3 mt-4">
+      <b><u>Filter By Disaster Type:</u></b>
+    </div>
+    <div class="row ml-0">
+      <div class="col-6">
+        <select style="width:250px !important;" [(ngModel)]="disasterDropdownValue" (change)="disasterDropdownChange($event.target.value)">
+          <option *ngFor="let type of disasterType" value="{{type[0]}}">{{type[0]}}</option>
+        </select>
+      </div>
+    </div>
+    <!--<div class="row ml-0">-->
+    <!--<button value="Generate Graph" (click)="generateGraph()">Generate Graph</button>-->
+    <!--</div>-->
+  </div>
+  <div class="col-9">
+    <div class="row m-3">
+      <div class="col-6 text-center">
+        <label><h4>Total Number of Occurance</h4></label>
+        <canvas
+          baseChart
+          [chartType]="'line'"
+          [datasets]="occuranceData"
+          [labels]="occuranceLabels"
+          [options]="occuranceOptions"
+          [legend]="true"
+          [colors]="chartColors"
+          (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+      <!--</div>-->
+      <!--<div class="col-6">-->
+      <!--<div class="row">-->
+      <div class="col-6 text-center">
+        <label><h4>Total Number of Deaths</h4></label>
+        <canvas
+          baseChart
+          [chartType]="'bar'"
+          [datasets]="deathData"
+          [labels]="deathLabels"
+          [options]="deathOptions"
+          [legend]="true"
+          (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 text-center">
+        <label><h4>Total Economy Damaged</h4></label>
+        <canvas
+          baseChart
+          [chartType]="'line'"
+          [datasets]="economyData"
+          [labels]="economyLabels"
+          [options]="economyOptions"
+          [legend]="true"
+          (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+      <!--</div>-->
+      <!--<div class="col-6">-->
+      <!--<div class="row">-->
+      <div class="col-6 text-center">
+        <label><h4>Total Number of People Affected</h4></label>
+        <canvas
+          baseChart
+          [chartType]="'bar'"
+          [datasets]="affectedData"
+          [labels]="affectedLabels"
+          [options]="affectedOptions"
+          [legend]="true"
+          [colors]="peoplechartColors"
+          (chartClick)="onChartClick($event)">
+        </canvas>
+      </div>
+    </div>
+    <!--<div class="row">-->
+    <!--<div class="col-6 text-center">-->
+    <!--<label><h4>Map</h4></label>-->
+    <!--&lt;!&ndash;<google-chart&ndash;&gt;-->
+    <!--&lt;!&ndash;[data]="geoChartData">&ndash;&gt;-->
+    <!--&lt;!&ndash;</google-chart>&ndash;&gt;-->
+    <!--<google-chart [type]="'GeoChart'" [data]="geo_data" ></google-chart>-->
+
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>

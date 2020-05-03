@@ -1,0 +1,115 @@
+<mat-toolbar color="dark" align="center">
+  <mat-toolbar-row>
+    <!-- Logo -->
+    <span>
+      <img src="http://www.devacron.com/wp-content/uploads/2016/06/git_logo.png" width="30px" height="30px"/>
+    </span>
+
+    <!-- Upload -->
+    <span>
+      <button mat-flat-button color="primary" mdbBtn type="button" class="waves-light" mdbWavesEffect routerLink="/dashboard">Dashboard</button>
+    </span>
+
+    <!-- Search -->
+    <span class="example-title">
+    <p align="center" style="font-size: larger">TRADE ANALYSIS</p>
+    </span>
+
+    <!-- Logout -->
+    <span class="example-spacer">
+          <button mat-flat-button color="primary" mdbBtn type="button" class="waves-light" mdbWavesEffect routerLink="/login">LogOut</button>
+    </span>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<br>
+<br>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <form>
+
+      <mat-form-field>
+        <mat-label>Select From year</mat-label>
+        <mat-select [(ngModel)]="fromYear" name="2008" (ngModelChange)="onFromYearChange()">
+          <mat-option *ngFor="let year of years" [value]="year[0]">
+            {{year[0]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select To Year</mat-label>
+        <mat-select [(ngModel)]="toYear" name="2012" (ngModelChange)="onToYearChange()">
+          <mat-option *ngFor="let year of years" [value]="year[0]">
+            {{year[0]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h4>Country</h4>
+      <mat-form-field>
+        <mat-label>Select Country</mat-label>
+        <mat-select [(ngModel)]="countryValue" name="Australia" (ngModelChange)="onCountryChange()">
+          <mat-option *ngFor="let country of countries" [value]="country[0]">
+            {{country[0]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h4>Product Type</h4>
+      <mat-form-field>
+        <mat-label>Select Product Type</mat-label>
+        <mat-select [(ngModel)]="productValue" name="Fuels" (ngModelChange)="onProductChange()">
+          <mat-option *ngFor="let product of products" [value]="product[0]">
+            {{product[0]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </mat-drawer>
+  <mat-drawer-content>
+
+    <div class="col-6 text-center">
+      <label><h4>Total Number of exports by YEAR in "{{countryValue}}" for product "{{productValue}}"</h4></label>
+      <canvas
+        baseChart
+        [chartType]="'line'"
+        [datasets]="yearDatasets"
+        [labels]="yearLabels"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+
+    <div class="col-6 text-center">
+      <label><h4>Total Number of exports by COUNTRY for product "{{productValue}}"</h4></label>
+      <canvas
+        baseChart
+        [chartType]="'bar'"
+        [datasets]="countryDatasets"
+        [labels]="countryLabels"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+
+    <div class="col-6 text-center">
+      <label><h4>Total Number of exports by PRODUCT for country "{{countryValue}}"</h4></label>
+      <canvas
+        baseChart
+        [chartType]="'bar'"
+        [datasets]="typeDatasets"
+        [labels]="typeLabels"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

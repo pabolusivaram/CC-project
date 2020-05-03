@@ -1,0 +1,37 @@
+
+<mat-toolbar color="dark" align="center">
+  <mat-toolbar-row>
+    <!-- Logo -->
+    <span>
+      <img src="http://www.devacron.com/wp-content/uploads/2016/06/git_logo.png" width="30px" height="30px"/>
+    </span>
+
+    <!-- Upload -->
+    <span>
+      <button mat-flat-button color="primary" mdbBtn type="button" class="waves-light" mdbWavesEffect routerLink="/home">Analysis</button>
+    </span>
+
+    <!-- Search -->
+    <span class="example-title">
+    <p align="center" style="font-size: larger">TRADE ANALYSIS</p>
+    </span>
+
+    <!-- Logout -->
+    <span class="example-spacer">
+          <button mat-flat-button color="primary" mdbBtn type="button" class="waves-light" mdbWavesEffect routerLink="/login">LogOut</button>
+    </span>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<br>
+<br>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer-content>
+    <div>
+      <iframe width="1150px" height="700px" src="https://prod-useast-a.online.tableau.com/t/aarthinagireddy/views/TradeinMedicalGoodsinthecontextoftacklingCOVID-19/Sheet1/an5n6@mail.umkc.edu/751619f9-8975-419f-a2e2-542f0e754f03?:display_count=n&:showVizHome=no&:embed=true&:origin=viz_share_link">
+      </iframe>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
